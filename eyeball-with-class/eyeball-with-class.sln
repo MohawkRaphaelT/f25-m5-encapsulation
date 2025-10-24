@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eyeball-with-class", "eyeball-with-class.csproj", "{728F0CD7-80B1-4C69-8BA0-00831F619480}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{728F0CD7-80B1-4C69-8BA0-00831F619480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{728F0CD7-80B1-4C69-8BA0-00831F619480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{728F0CD7-80B1-4C69-8BA0-00831F619480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{728F0CD7-80B1-4C69-8BA0-00831F619480}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E6B1F3E-65BE-4E6C-8523-255642D911D2}
+	EndGlobalSection
+EndGlobal
