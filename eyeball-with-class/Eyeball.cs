@@ -1,14 +1,29 @@
-﻿using MohawkGame2D;
-using System;
+﻿using System;
 using System.Numerics;
+
+namespace MohawkGame2D;
 
 public class Eyeball
 {
-    Color irisColor = new Color(128, 64, 0);
-    Vector2 position = new Vector2(200, 200);
-    float corneaR = 50;
-    float irisR = 30;
-    float pupilR = 15;
+    public Color irisColor = new Color(128, 64, 0);
+    public Vector2 position = new Vector2(200, 200);
+    public float corneaR = 50;
+    public float irisR = 30;
+    public float pupilR = 15;
+
+    Color[] eyeColors = [
+        new Color(128,  64,   0), // brown
+        new Color( 64, 128,  64), // green
+        new Color( 64, 100, 160), // blue
+        ];
+
+    public Eyeball() { }
+
+    public Eyeball(Vector2 position)
+    {
+        this.position = position;
+        this.irisColor = eyeColors[Random.Integer(eyeColors.Length)];
+    }
 
     public void DrawEyeball()
     {
