@@ -6,7 +6,7 @@ public class Game
 {
     int numberOfEyesClicked;
     float gameTimeWon;
-    Eyeball[] eyeballs = [];
+    Eyeball[] eyeballs = new Eyeball[5];
 
     public void Setup()
     {
@@ -18,11 +18,10 @@ public class Game
         numberOfEyesClicked = 0;
         gameTimeWon = 0;
         Time.SecondsElapsed = 0; // reset timer
-        eyeballs = [
-            new Eyeball(new Vector2(100, 200)),
-            new Eyeball(new Vector2(300, 200)),
-            new Eyeball(new Vector2(200, 100)),
-            ];
+        for (int i = 0; i < eyeballs.Length; i++)
+        {
+            eyeballs[i] = new Eyeball(50);
+        }
     }
 
     public void Update()

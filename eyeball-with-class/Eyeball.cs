@@ -26,6 +26,15 @@ public class Eyeball
         this.irisColor = eyeColors[Random.Integer(eyeColors.Length)];
     }
 
+    public Eyeball(float size)
+    {
+        this.position = Random.Vector2(Window.Size);
+        this.irisColor = eyeColors[Random.Integer(eyeColors.Length)];
+        corneaR = size;
+        irisR = size * 0.7f;
+        pupilR = size * 0.35f;
+    }
+
     public bool IsEyeClicked()
     {
         // Was eye closed this frame?
