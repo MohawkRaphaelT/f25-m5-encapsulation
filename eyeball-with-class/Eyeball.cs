@@ -10,6 +10,7 @@ public class Eyeball
     public float corneaR = 50;
     public float irisR = 30;
     public float pupilR = 15;
+    private bool isEyeOpen = true;
 
     Color[] eyeColors = [
         new Color(128,  64,   0), // brown
@@ -25,6 +26,23 @@ public class Eyeball
         this.irisColor = eyeColors[Random.Integer(eyeColors.Length)];
     }
 
+    public void IsEyeClicked()
+    {
+        // Only run if we are clicking the mouse button
+        if (Input.IsMouseButtonPressed(MouseInput.Left))
+        {
+            // Compute distance between centre of eye and mouse
+            Vector2 mousePosition = Input.GetMousePosition();
+            Vector2 fromEyeToMouse = mousePosition - position;
+            float distanceEyeToMouse = fromEyeToMouse.Length();
+            // Check if mouse is on top of eye (inside circle)
+            if (distanceEyeToMouse <= corneaR)
+            {
+                isEyeOpen = false;
+            }
+        }
+    }
+
     public void DrawEyeball()
     {
         // General draw config
@@ -35,32 +53,40 @@ public class Eyeball
         Draw.FillColor = Color.White;
         Draw.Circle(position, corneaR);
 
-        // Math out vector from eye to mouse
-        Vector2 mousePosition = Input.GetMousePosition();
-        Vector2 fromEyeToMouse = mousePosition - position;
-        float distanceToMouse = fromEyeToMouse.Length();
-        Vector2 directionToMouse = Vector2.Normalize(fromEyeToMouse);
-
-        // Calculate where iris an pupil will go
-        Vector2 irisPosition;
-        if (distanceToMouse < corneaR - irisR)
+        if (isEyeOpen)
         {
-            // mouse is on top of eye, draw at mouse position
-            irisPosition = mousePosition;
+            // Math out vector from eye to mouse
+            Vector2 mousePosition = Input.GetMousePosition();
+            Vector2 fromEyeToMouse = mousePosition - position;
+            float distanceToMouse = fromEyeToMouse.Length();
+            Vector2 directionToMouse = Vector2.Normalize(fromEyeToMouse);
+
+            // Calculate where iris an pupil will go
+            Vector2 irisPosition;
+            if (distanceToMouse < corneaR - irisR)
+            {
+                // mouse is on top of eye, draw at mouse position
+                irisPosition = mousePosition;
+            }
+            else
+            {
+                // mouse is outside of eye, draw eye towards mouse
+                irisPosition = position + directionToMouse * (corneaR - irisR);
+            }
+
+            // Draw Iris
+            Draw.FillColor = irisColor;
+            Draw.Circle(irisPosition, irisR);
+
+            // Draw Pupil
+            Draw.FillColor = Color.Black;
+            Draw.Circle(irisPosition, pupilR);
         }
-        else
+        else // if eye is closed
         {
-            // mouse is outside of eye, draw eye towards mouse
-            irisPosition = position + directionToMouse * (corneaR - irisR);
+            Vector2 offset = new Vector2(corneaR, 0);
+            Draw.Line(position - offset, position + offset);
         }
-
-        // Draw Iris
-        Draw.FillColor = irisColor;
-        Draw.Circle(irisPosition, irisR);
-
-        // Draw Pupil
-        Draw.FillColor = Color.Black;
-        Draw.Circle(irisPosition, pupilR);
     }
 }
 

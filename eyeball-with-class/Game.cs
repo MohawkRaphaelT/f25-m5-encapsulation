@@ -1,10 +1,7 @@
-﻿// Include the namespaces (code libraries) you need below.
-using System;
+﻿using System;
 using System.Numerics;
 
-// The namespace your code is in.
 namespace MohawkGame2D;
-
 public class Game
 {
     Eyeball[] eyeballs = [
@@ -25,6 +22,7 @@ public class Game
         for (int i = 0; i < eyeballs.Length; i++)
         {
             Eyeball eyeball = eyeballs[i];
+            eyeball.IsEyeClicked();
             eyeball.DrawEyeball();
         }
     }
